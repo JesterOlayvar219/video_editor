@@ -2,15 +2,17 @@
 
 import { createContext, useContext, useReducer } from "react";
 
-const initialState = {
-  textElements: [],
-  currentTime: 0,
-  duration: 30 * 30, // 30 seconds at 30 fps
-  isPlaying: false,
-};
-
 const ProjectContext = createContext();
 
+// Define initial state
+const initialState = {
+  textElements: [], // Array to store text overlays
+  currentTime: 0, // Current video playback time
+  duration: 30 * 30, // 30 seconds at 30 fps
+  isPlaying: false, // Video playback state
+};
+
+// Define the reducer function for state updates
 const projectReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TEXT":
@@ -47,6 +49,7 @@ const projectReducer = (state, action) => {
   }
 };
 
+// Create Provider component to wrap around the app
 export const ProjectProvider = ({ children }) => {
   const [state, dispatch] = useReducer(projectReducer, initialState);
   return (
